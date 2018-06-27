@@ -5,11 +5,11 @@ from wavdataset import DatasetManager
 from model import Model
 
 
+DEVICE_NAME = 'USB Device'
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 48000
-FRAMES_PER_BUFFER = 128 * 50 # * 10
-DEVICE_INDEX = 1
+FRAMES_PER_BUFFER = 128 * 10
 
 TIME = 128 / 48000
 
@@ -19,9 +19,17 @@ def main():
     model.load()
 
     audio = pyaudio.PyAudio()
-    dev_name = audio.get_device_info_by_index(DEVICE_INDEX)['name']
-    print(dev_name)
-    if 'USB' not in dev_name:
+    n_device = audio.get_device_count()
+
+    dev_id = -1
+    for i in range(n_device):
+        dev_name = audio.get_device_info_by_index(i)['name']
+
+        if DEVICE_NAME in dev_name:
+            dev_id = i
+            print(dev_name)
+
+    if dev_id == -1:
         print('required device is not found')
         quit()
 
@@ -30,7 +38,7 @@ def main():
         channels=CHANNELS,
         rate=RATE,
         input=True,
-        input_device_index=DEVICE_INDEX,
+        input_device_index=dev_id,
         frames_per_buffer=FRAMES_PER_BUFFER)
 
 
@@ -52,7 +60,6 @@ def main():
             run_nn_idx += 1
             if run_nn_idx % 3 == 0:
                 run_nn(model, spectrum_buf)
-#                getMaxFrequency(spectrum_buf, TIME)
                 run_nn_idx = 0
 
 
@@ -69,11 +76,7 @@ def run_nn(model, image):
     image_array = np.array(image)
     image_array = np.reshape(image_array, [-1, Model.n_frame, Model.n_frequency, 1])
     result = model.run(image_array)
-    if result[0] >= 0.9:
-        print(" {0:.3} ".format(result[0]))
-    elif result[0] >= 0.8:
-        print(" {0:.3} ".format(result[0]))
-    elif result[0] >= 0.6:
+    if result[0] >= 0.8:
         print(" {0:.3} ".format(result[0]))
 
 
