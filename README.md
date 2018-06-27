@@ -21,12 +21,18 @@ format : signed int 16 bits little endian
 monaural
 
 
-
 ### 使用したバージョン
 
 `python 3.5.2`
 
 `tensorflow 1.2.1`
+
+
+## 使用例
+
+指ぱっちんの音を学習させて実際に使ってみました。
+
+https://www.youtube.com/watch?v=zfpo7Ow4mkc
 
 
 ## 使い方
