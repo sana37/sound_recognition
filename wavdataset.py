@@ -8,19 +8,8 @@ import os
 class DatasetManager:
     n_frame = 128
     image_size = 64
-    true_dir_list = [
-        "wavdataset/v2/mix/true",
-        "wavdataset/v2/mix/true2",
-        "wavdataset/v2/mix/true_noise",
-        "wavdataset/v2/mix/true2_noise"]
-    false_dir_list = [
-        "wavdataset/v2/mix/false_noise",
-        "wavdataset/v2/mix/false_noise_noise",
-        "wavdataset/v2/mix/false_high",
-        "wavdataset/v2/mix/false_high_variety",
-        "wavdataset/v2/mix/false_high_variety2",
-        "wavdataset/v2/mix/false_clap",
-        "wavdataset/v2/mix/false_clap_variety"]
+    true_dir_list = []
+    false_dir_list = []
     max_spectrum = 10
 
 
