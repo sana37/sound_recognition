@@ -2,4 +2,4 @@ __pycache__/
 /checkpoint
 /wavdataset/
 *.tar.gz
-/fingersnap_model.*
+/sound_recognition_model.*
