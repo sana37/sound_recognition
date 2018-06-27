@@ -21,8 +21,6 @@ class DatasetManager:
    #     "wavdataset/v2/mix/false_high_variety2",
     #    "wavdataset/v2/mix/false_clap",
 #        "wavdataset/v2/mix/false_clap_variety"]
-    n_true_max = 750
-    n_false_max = 1500
     max_spectrum = 10
 
 
@@ -39,7 +37,6 @@ class DatasetManager:
         self.shuffle_dataset()
 
         print("{0} images fetched.".format(self.n_data))
-#        print(self.labels)
 
 
     def release_dataset(self):
@@ -88,8 +85,6 @@ class DatasetManager:
                 self.labels.extend([1])
 
                 n_true += 1
-#                if n_true >= DatasetManager.n_true_max:
-#                    break
 
 
         n_false = 0
@@ -101,26 +96,7 @@ class DatasetManager:
                 self.labels.extend([0])
 
                 n_false += 1
-#                if n_false >= DatasetManager.n_false_max:
-#                    break
 
-
-        '''
-        for file_name in os.listdir(DatasetManager.directory_name_false):
-            new_images = DatasetManager.read_file(DatasetManager.directory_name_false + '/' + file_name, 1)
-#            new_images = DatasetManager.read_file(
-#                DatasetManager.directory_name_false + '/' + file_name,
-#                DatasetManager.n_false_max - n_false)
-
-            self.images.extend(new_images)
-            self.labels.extend([0])
-#            self.labels.extend([0] * len(new_images))
-
-            n_false += 1
-#            n_false += len(new_images)
-            if n_false >= DatasetManager.n_false_max:
-                break
-        '''
 
         print("true data size: {0}, false data size: {1}".format(n_true, n_false))
 
@@ -145,7 +121,7 @@ class DatasetManager:
         spectrums_image = []
         spectrum_idx = 0
 
-        for i in np.arange(0, n_allframe, DatasetManager.n_frame): # n_frame // 2
+        for i in np.arange(0, n_allframe, DatasetManager.n_frame):
             if i + DatasetManager.n_frame > n_allframe:
                 break
 
