@@ -1,6 +1,6 @@
 # sound_recognition
 
-CNNを使った音声認識ができます。
+CNNを使った機械学習で音声認識できるようになりました。
 
 
 ## 概要
@@ -121,3 +121,13 @@ https://www.youtube.com/watch?v=zfpo7Ow4mkc
 使用したい音声デバイスによってデバイス名は異なるので、`realtime.py`では変数`DEVICE_NAME`にて使いたいデバイスの名前を設定しています。
 
 CNNのパラメータは、`training.py`で学習したときに保存されたものを読み込んで使っています。
+
+
+
+
+## 参考
+
+ * https://www.tensorflow.org/tutorials/layers
+ * http://webdatareport.hatenablog.com/entry/2016/11/06/161304
+ * http://takeshid.hatenadiary.jp/entry/2016/01/10/153503
+ 
