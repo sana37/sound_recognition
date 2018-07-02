@@ -1,6 +1,6 @@
 # sound_recognition
 
-tensorflowでCNNを使って音声認識をするものをつくりました。
+CNNを使った音声認識ができます。
 
 
 ## 概要
@@ -9,23 +9,32 @@ wav形式音声データをフーリエ変換して得られた周波数デー�
 
 ここで実装したCNNは、入力がtrueかfalseか判定するだけの二値分類器です。
 
-学習させた後は、得られたパラメータを実際に使って音声デバイスからの音を判別させることができます。
+学習させたCNNを実際に使って音声デバイスからの音を判別させることもできます。
+
+
+## 詳細
+
+CNNの構築にはtensorflowを使っています。
+
+また、wavファイルから読み取った音声データは、`scipy.fftpack`を使ってフーリエ変換しています。
+
+
 
 
 ### wavファイル、音声デバイスの設定
 
-rate : 48000 Hz
+ * rate : 48000 Hz
 
-format : signed int 16 bits little endian
+ * format : signed int 16 bits little endian
 
-monaural
+ * channel : monaural
 
 
 ### 使用したバージョン
 
-`python 3.5.2`
+ * `python 3.5.2`
 
-`tensorflow 1.2.1`
+ * `tensorflow 1.2.1`
 
 
 ## 使用例
@@ -55,7 +64,7 @@ https://www.youtube.com/watch?v=zfpo7Ow4mkc
 
 データセットを使って学習させたいときはpythonインタプリタで`training.py`を実行します。
 
-`training.py`はデータセットを取得し、これを教師データとしてCNNに与えて特徴を学習させます。
+`training.py`は、所定のパスにあるデータセットを使ってCNNに学習させます。
 
 学習が終わると、得られたパラメータを保存します。
 
